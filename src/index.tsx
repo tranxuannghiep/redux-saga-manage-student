@@ -1,20 +1,31 @@
-import React from 'react';
+import { CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ConnectedRouter } from 'connected-react-router';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { history } from 'utils';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { store } from './app/store';
 import './index.css';
+import reportWebVitals from './reportWebVitals';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
-
+const theme = createTheme();
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+        <ToastContainer />
+      </ThemeProvider>
+    </ConnectedRouter>
+  </Provider>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
