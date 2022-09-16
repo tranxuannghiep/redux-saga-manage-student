@@ -44,7 +44,8 @@ export default function StudentForm({ initialValues, onSubmit }: StudentFormProp
         control, handleSubmit, formState: { isSubmitting }
     } = useForm({
         defaultValues: initialValues,
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema),
+        mode: 'onBlur'
     })
 
     const handleFormSubmit = async (formValues: Student) => {
