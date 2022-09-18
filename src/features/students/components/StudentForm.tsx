@@ -6,6 +6,7 @@ import { selectCityOptions } from "features/city/citySlice";
 import { Student } from "models";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { validateNumber } from "utils";
 import * as yup from "yup";
 
 export interface StudentFormProps {
@@ -27,7 +28,8 @@ const schema = yup.object().shape({
         .positive("Please enter a positive number")
         .max(10, "Max is 10")
         .required("Mark is required")
-        .typeError("Please enter a valid number"),
+        .typeError("Please enter a valid number")
+        .test("valid number", "Please enter a valid number", (value) => validateNumber(value as number)),
     gender: yup
         .string()
         .oneOf(['male', 'female'], 'Please select either male or female')
@@ -65,8 +67,8 @@ export default function StudentForm({ initialValues, onSubmit }: StudentFormProp
                     { label: 'Male', value: 'male' },
                     { label: 'Female', value: 'female' },
                 ]} />
-                <InputField name="age" control={control} label="Age" type="number" />
-                <InputField name="mark" control={control} label="Mark" type="number" />
+                <InputField name="age" control={control} label="Age" typeInput="positive" />
+                <InputField name="mark" control={control} label="Mark" />
                 <SelectField name="city" control={control} label="City" options={cityOptions} />
                 {messageError &&
                     <Alert severity="error">{messageError}</Alert>
