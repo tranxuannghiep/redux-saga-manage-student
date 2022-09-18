@@ -44,7 +44,6 @@ export default function LoginPage() {
                 <Typography variant="h5" component='h1' align="center">Login</Typography>
                 <Box mt={4}>
                     <LoginForm initialValues={initialValues} onSubmit={handleLoginFormSubmit} />
-
                 </Box>
             </Paper>
         </div>

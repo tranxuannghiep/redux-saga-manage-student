@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { LoginPayload, selectLogging } from "../authSlice";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Link } from "react-router-dom";
 
 export interface LoginFormProps {
     initialValues?: LoginPayload;
@@ -42,6 +43,11 @@ export function LoginForm({ initialValues, onSubmit }: LoginFormProps) {
                     <Button fullWidth variant="contained" color="primary" type="submit" disabled={loading}>
                         {loading && <CircularProgress size={16} color="primary" />} login
                     </Button>
+                </Box>
+                <Box mt={2}>
+                    <Link to="/auth/register" color="inherit" style={{ textDecoration: "none" }}>
+                        <Button fullWidth variant="outlined">Don&apos;t have an account. Register here</Button>
+                    </Link>
                 </Box>
             </form>
         </Box>

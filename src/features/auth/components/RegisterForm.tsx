@@ -6,6 +6,7 @@ import { InputField, RadioGroupField, SelectField } from "components/FormFields"
 import { Region, State } from "models";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import { RegisterPayload, selectLoadingRegister } from "../authSlice";
@@ -105,6 +106,11 @@ export function RegisterForm({ initialValues, onSubmit }: RegisterFormProps) {
                     <Button fullWidth variant="contained" color="primary" type="submit" disabled={loading}>
                         {loading && <CircularProgress size={16} color="primary" />} Register
                     </Button>
+                </Box>
+                <Box mt={2}>
+                    <Link to="/auth/login" color="inherit" style={{ textDecoration: "none" }}>
+                        <Button fullWidth variant="outlined">Already have an account. Login here</Button>
+                    </Link>
                 </Box>
             </form>
         </Box>
